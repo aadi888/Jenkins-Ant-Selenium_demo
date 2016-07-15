@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:http://www.icalmaker.com
+BEGIN:VEVENT
+UID:http://www.icalmaker.com/event/eadc6014-941a-45d6-a057-41fbb12c3341
+DTSTAMP:20160520T141802Z
+DTSTART:20160915T000000Z
+DTEND:20161229T000000Z
+SUMMARY:Cs680
+LOCATION:university of massachusetts boston
+DESCRIPTION:hi myself jun i am taking cs 680 next semester . See you all there. 
+END:VEVENT
+END:VCALENDAR
