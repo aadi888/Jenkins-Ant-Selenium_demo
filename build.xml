@@ -28,7 +28,7 @@
         <delete dir="bin"/>
     </target>
     <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project,Server (2)" name="build"/>
+    <target depends="build-subprojects,build-project,Server" name="build"/>
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
@@ -51,7 +51,7 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="Server (2)">
+    <target name="Server">
         <java classname="Server" failonerror="true" fork="yes">
             <classpath refid="Cs681(IndividualProject).classpath"/>
         </java>
