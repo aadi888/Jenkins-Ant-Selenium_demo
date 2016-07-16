@@ -20,7 +20,7 @@ public class SeleniumTest {
 	   
 	   WebElement password= driver.findElement(By.name("pass"));
 	   
-	   password.sendKeys("jaijinendra");
+	   password.sendKeys("xxxx");
 	   
 	   
 	   
