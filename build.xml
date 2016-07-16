@@ -37,7 +37,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="Cs681(IndividualProject).classpath"/>
+            <classpath refid="Cs681(IndividualProject).classpath,Selenium.libraryclasspath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -62,7 +62,7 @@
               	
               	<target name="SeleniumTest">
               	        <java classname="SeleniumDemo" failonerror="true" fork="yes">
-              	            <classpath refid="Cs681(IndividualProject).classpath,Selenium.libraryclasspath"/>
+              	            <classpath refid="Cs681(IndividualProject).classpath"/>
               	        </java>
               	    </target>
               	
