@@ -9,16 +9,24 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
+              	<property name="report.dir" value="testNgReport"/>
+              	<property name="resources.dir" value=""/>
+              	
     <path id="Cs681(IndividualProject).classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/apache-commons-lang.jar"/>
         <pathelement location="lib/ical4j-1.0.jar"/>
         <pathelement location="lib/org-apache-commons-logging.jar"/>
         <pathelement location="lib/backport-util-concurrent.jar"/>
+    	<pathelement location="lib/testng-6.9.9.jar"/>
     </path>
               	<path id="Selenium.libraryclasspath">
               	                <fileset dir="lib" includes="**/*.jar" />   
+              		
               	</path>
+              	
+              	
+              		
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
@@ -31,7 +39,7 @@
         <delete dir="bin"/>
     </target>
     <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project,SeleniumTest" name="build"/>
+    <target depends="build-subprojects,build-project,SeleniumTest,testng-execution" name="build"/>
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
@@ -68,6 +76,54 @@
               	        	<classpath refid="Selenium.libraryclasspath"/>
               	        </java>
               	    </target>
+              
+              <!-- Logic for TestNg Test cases -->
+              	
+              	<property name="basedir" value="." />
+              		<property name="lib" value="${basedir}/lib" />
+              		<property name="src" value="${basedir}/src" />
+              		<property name="bin" value="${basedir}/bin" />
+              		<property name="report-dir" value="${basedir}/Test-Report" />
+              		<property name="testng-report-dir" value="${report-dir}/TestNGreport" />
+              		
+              		<!-- ====== Set the classpath ====  -->
+              		<path id="classpath">
+              			<pathelement location="${bin}" />
+              			<fileset dir="${lib}">
+              				<include name="*.jar" />
+              			</fileset>
+              		</path>
+              		
+              		<!-- Delete directories  -->
+              		<target name="delete-dir">
+              			<delete dir="${bin}" />
+              			<delete dir="${report-dir}" />
+              		</target>
+              		
+              		<!-- Creating directories -->
+              		<target name="create" depends="delete-dir">
+              			<mkdir dir="${bin}" />
+              			<mkdir dir="${report-dir}" />
+              		</target>
+              	
+              	
+              	<!-- Compile the java code from ${src} into ${bin} -->
+              		<target name="compile" depends="create">
+              			<javac srcdir="${src}" classpathref="classpath" includeAntRuntime="No" destdir="${bin}" />
+              			<echo> /* Compiled Directory Classes */ </echo>
+              		</target>
+              	
+              	
+              	
+              	<!-- Runs the file and generates Reportng report for TestNG-->
+              		<taskdef name="testng" classname="org.testng.TestNGAntTask" classpathref="classpath" />
+              		
+              		<target name="testng-execution" depends="compile">
+              			<mkdir dir="${testng-report-dir}" />
+              			<testng outputdir="${testng-report-dir}" classpathref="classpath" useDefaultListeners="true">
+              				<xmlfileset dir="${basedir}" includes="testng.xml" />
+              			</testng>
+              		</target>
               	
               	
 </project>
