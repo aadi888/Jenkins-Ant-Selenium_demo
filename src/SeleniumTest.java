@@ -29,6 +29,8 @@ public class SeleniumTest {
 	   
 	   submitForm.submit();
 	   
+	   driver.quit();
+	   
 	   
 	   
 	   
